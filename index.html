@@ -1,0 +1,881 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Pr&aacute;ctica 2: Se&ntilde;ales en tiempo continuo</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-31"><meta name="DC.source" content="P022.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Pr&aacute;ctica 2: Se&ntilde;ales en tiempo continuo</h1><!--introduction--><p>Integrantes:</p><div><ul><li>Arellano S&aacute;nchez Jos&eacute; Alberto</li></ul></div><div><ul><li>L&oacute;pez Piedracruz Marcos Antonio</li></ul></div><div><ul><li>Luviano Murakawa Tsuioshi Alberto</li></ul></div><div><ul><li>Robles Cernas Carlos de Jesus</li></ul></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Objetivos</a></li><li><a href="#3">Intorducci&oacute;n</a></li><li><a href="#6">Desarrollo</a></li><li><a href="#7">1. Creaci&oacute;n de una funci&oacute;n</a></li><li><a href="#8">2. Funcion para graficar en <img src="P022_eq03442895190380135198.png" alt="$R$">.</a></li><li><a href="#9">4. Ejemplos del libro de texto (Lathi).</a></li><li><a href="#18">5. Problema 1.2.2 utilizando MATLAB</a></li><li><a href="#19">6. Funci&oacute;n para calcular la energ&iacute;a</a></li><li><a href="#24">7. Funci&oacute;n para calcular la potencia</a></li></ul></div><h2 id="2">Objetivos</h2><p>Los objetivos de la pr&aacute;ctica 2 son los siguientes:</p><p>Objetivo General:</p><div><ul><li>Manipulaci&oacute;n b&aacute;sica de MATLAB</li></ul></div><p>Objetivos espec&iacute;ficos:</p><div><ul><li>Gr&aacute;ficas de se&ntilde;ales reales y complejas continuas</li></ul></div><div><ul><li>Transformaci&oacute;n de se&ntilde;ales continuas (escalamientos y traslaciones)</li></ul></div><div><ul><li>Calculo de energ&iacute;a y potencia de se&ntilde;ales continuas</li></ul></div><h2 id="3">Intorducci&oacute;n</h2><div><ul><li>Historia de Matlab</li></ul></div><p>Matlab es un software matem&aacute;tico con IDE  (entorno de desarrollo integrado por sus siglas en ingles), con lenguaje M y multiplataforma.</p><p>Cleve Moler crea la primera versi&oacute;n de Matlab en 1984, usando paquetes de subrutinas en Fortran en los cursos de An&aacute;lisis Num&eacute;rico y Algebra Lineal, sin tener una necesidad de programas que usaran este lenguaje.</p><p>En 1970 se proporcion&oacute; un acceso sencillo al software de matrices LINPACK y EISPACK al crearse el lenguaje de programaci&oacute;n M.</p><p>En 2004 Matlab ya contaba con m&aacute;s de un mill&oacute;n de usuarios, tanto acad&eacute;micos como empresarios.</p><p><a href="https://www.ecured.cu/MATLAB7">Enlace1</a></p><div><ul><li>Octave</li></ul></div><p>Octave (GNU Octave), es parte de proyecto GNU y a su vez un programa libre para hacer c&aacute;lculos compatibles en un 99% con Matlab El proyecto fue creado alrededor del a&ntilde;o 1988 para ser utilizado en un curso de dise&ntilde;o de reactores qu&iacute;micos, sin embargo, en 1992 se decide extenderlo y, bajo la direcci&oacute;n de John W. Eaton, comienza a desarrollarse siendo su versi&oacute;n Alpha lanzada el 4 de enero de 1993, para aparecer la versi&oacute;n 1.0 el 17 de febrero de 1994.</p><p>Octave es muy com&uacute;nmente utilizado como alternativa a Matlab al ser de licencia p&uacute;blica general de GNU, siendo Matlab descartado por muchas empresas.</p><p>Algunas de las ventajas de Octave son:</p><div><ul><li>La sintaxis es similar a la utilizada en MATLAB.</li><li>Es un lenguaje interpretado.</li><li>No permite pasar argumentos por referencia. Siempre se pasan por valor.</li><li>No permite punteros.</li><li>Se pueden generar scripts.</li><li>Soporta gran parte de las funciones de la librer&iacute;a est&aacute;ndar de C.</li><li>Puede extenderse para ofrecer compatibilidad a las llamadas al sistema UNIX.</li><li>El lenguaje est&aacute; pensado para trabajar con matrices y provee mucha funcionalidad para trabajar con &eacute;stas.</li><li>Soporta estructuras similares a los "structs " de C.</li></ul></div><p><a href="https://torroja.dmt.upm.es/media/files/paper_logrono.pdf">Documento1</a></p><p><a href="http://ewh.ieee.org/sb/el_salvador/uca/octave.html">Enlace2</a></p><div><ul><li>PYTHON</li></ul></div><p>En 1989, Guido Van Rossum, decidi&oacute; empezar un proyecto como pasatiempo d&aacute;ndole continuidad a ABC, un lenguaje de programaci&oacute;n desarrollado en el CWI.</p><p>ABC fue Creado a principios de los 80&#8217;s siendo alternativa e BASIC pero, el hardware disponible en la &eacute;poca hac&iacute;a dif&iacute;cil su uso. As&iacute; Van Rossum creo Python, siendo el nombre escogido debido al gusto de Van Rossum por el grupo Monty Python.</p><p>En 1991 se public&oacute; la versi&oacute;n 0.9.0, teniendo ya disponibles las clases por herencia, manejo de excepciones, funciones y tipos moduladores.</p><p><a href="https://platzi.com/blog/historia-python/">Enlace3</a></p><h2 id="6">Desarrollo</h2><h2 id="7">1. Creaci&oacute;n de una funci&oacute;n</h2><p>Realizar una funcion que reciba dos parametros <img src="P022_eq05508344529756732484.png" alt="$a$"> y <img src="P022_eq08589834809570054062.png" alt="$\omega$"> para que pueda regresar la evaluaci&oacute;n: <img src="P022_eq01407365636722940873.png" alt="$F(\omega)=a/(a^2+\omega^2)$"></p><p>Para poder hacer el realizamos dos codigos, uno al que lo utilizamos unicamente para definir un escalon y el otro en el que se le pide al usuario introduccir los valores de <img src="P022_eq05508344529756732484.png" alt="$a$"> y <img src="P022_eq08589834809570054062.png" alt="$\omega$"> <i>funcion escalon</i></p><pre class="codeinput"> sal= @(Escalon)(t&gt;=0)
+
+clc
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+dt=1e-3;
+<span class="comment">% t=-10:dt:10;</span>
+
+<span class="comment">% function [f_w] = fun1(a,w)</span>
+<span class="comment">% f_w = a./(a^2.+(w.^2));</span>
+<span class="comment">% end</span>
+
+syms <span class="string">w</span>
+a = 5;     <span class="comment">%input('ingrese a diferente de 0='); El usuario introduce el valor de a</span>
+fun1(a,w)
+
+<span class="comment">% f_t=exp(-a.*t).*cos(w.*t).*Escalon(t);</span>
+<span class="comment">% g_t=exp(-a.*t).*sin(w.*t).*Escalon(t);</span>
+<span class="comment">% y_t=(1/abs(a)).*(1/2).*t.*exp(-a.*t).*sin(w.*t).*Escalon(t);</span>
+<span class="comment">% fg_t=conv(f_t,g_t,'same').*dt;</span>
+</pre><pre class="codeoutput">
+sal =
+
+  function_handle with value:
+
+    @(Escalon)(t&gt;=0)
+
+ 
+ans =
+ 
+5/(w^2 + 25)
+ 
+</pre><h2 id="8">2. Funcion para graficar en <img src="P022_eq03442895190380135198.png" alt="$R$">.</h2><p>Construya una funci&oacute;n que gr&aacute;fique funciones de <img src="P022_eq02145986785580767623.png" alt="$f:R\rightarrow R$"> en el formato de su elecci&oacute;n</p><pre class="codeinput"><span class="comment">%y pruebe su c&oacute;digo mostrando la gr&aacute;fica de $F(\omega)$ vs $\omega$ en el intervalo $[-2,2]$ para</span>
+<span class="comment">%$a=1$, no debe incluir el c&oacute;digo, solo el uso de la funci&oacute;n para mostrar</span>
+<span class="comment">%la gr&aacute;fica.</span>
+
+w=-2:0.001:2;
+a=1;
+f_w=fun1(a,w);
+figura(w,f_w)
+
+<span class="comment">% %%      3. Funcion para graficar en $R$ a $R^2$</span>
+<span class="comment">% %</span>
+<span class="comment">% Construya una funci&oacute;n que gr&aacute;fique funciones de $f:R\rightarrow R^2$ en el formato</span>
+<span class="comment">% de su elecci&oacute;n y pruebe su c&oacute;digo mostrando la gr&aacute;fica de la transformada de Fourier</span>
+<span class="comment">% $F(w)$ en $[-10,10]$ de la funci&oacute;n $f(t)=e^{-2t}u(t)$, puede utilizar una funci&oacute;n anonima</span>
+<span class="comment">% para este fin, no debe incluir el c&oacute;digo, solo el uso de la funci&oacute;n para mostrarla gr&aacute;fica.</span>
+<span class="comment">% Reporte la gr&aacute;fica de $f(t)$ de $[-1,5]$ (recuerde que ya tiene una funci&oacute;n para esto).</span>
+<span class="comment">% Reporte del espectro de magnitud y del espectro de fase en $[-10,10].</span>
+<span class="comment">% %</span>
+clc
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+dt=1e-3;
+<span class="comment">% t=-1.5:dt:5.5;</span>
+syms <span class="string">w</span> <span class="string">t</span>
+<span class="comment">%</span>
+f_t = exp(-2.*t).*heaviside(t)
+F_w = transformada(f_t,t,w)
+
+t=[-1:0.001:5];
+f_t = exp(-2.*t).*heaviside(t);
+w = [-10:0.001:10];
+F_w = 1./(2 + w.*1i);
+
+
+grafica3(t,f_t,<span class="string">'f(t)'</span>)
+
+
+grafica3(w,F_w,<span class="string">'F(w)'</span>)
+
+z=w./2;
+theta=-atan(z);
+
+
+grafica3(w,theta,<span class="string">'&lt;w'</span>)
+</pre><pre class="codeoutput"> 
+f_t =
+ 
+exp(-2*t)*heaviside(t)
+ 
+ 
+F_w =
+ 
+1/(2 + w*1i)
+ 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+</pre><img vspace="5" hspace="5" src="P022_01.png" alt=""> <img vspace="5" hspace="5" src="P022_02.png" alt=""> <img vspace="5" hspace="5" src="P022_03.png" alt=""> <h2 id="9">4. Ejemplos del libro de texto (Lathi).</h2><div><ul><li>Ejercicio 1.1</li></ul></div><p>gr&aacute;fica 1</p><pre class="codeinput">clear;
+clc;
+t=(-2:2);
+f= @(t) exp(-t).*cos(2*pi*t)
+figure
+plot(t,f(t))
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'f(t)'</span>);
+grid;
+</pre><pre class="codeoutput">
+f =
+
+  function_handle with value:
+
+    @(t)exp(-t).*cos(2*pi*t)
+
+</pre><img vspace="5" hspace="5" src="P022_04.png" alt=""> <p>gr&aacute;fica 2</p><pre class="codeinput">clear;
+clc;
+figure
+t=(-2:.01:2);
+f= @(t) exp(-t).*cos(2*pi*t)
+plot(t,f(t))
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'f(t)'</span>);
+grid;
+</pre><pre class="codeoutput">
+f =
+
+  function_handle with value:
+
+    @(t)exp(-t).*cos(2*pi*t)
+
+</pre><img vspace="5" hspace="5" src="P022_05.png" alt=""> <div><ul><li>Ejercicio 1.2</li></ul></div><p>gr&aacute;fica 1</p><pre class="codeinput">clear;
+clc;
+u= @(t) t&gt;=0;
+t=-2:2;
+plot(t,u(t))
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'u(t)'</span>);
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="P022_06.png" alt=""> <p>gr&aacute;fica 2</p><pre class="codeinput">clear;
+clc;
+u= @(t) t&gt;=0;
+t=-2:2;
+plot(t,u(t))
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'u(t)'</span>);
+grid <span class="string">on</span>;
+t=-2:.01:2;
+plot(t,u(t))
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'u(t)'</span>);
+grid <span class="string">on</span>;
+axis ([-2 2 -.1 1.1]);
+</pre><img vspace="5" hspace="5" src="P022_07.png" alt=""> <p>gr&aacute;fica 3</p><pre class="codeinput">clear;
+clc;
+p= @(t) (t&gt;=0 &amp; t&lt;1);
+t=-1:.01:2;
+plot (t,p(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'p(t)=u(t)-u(t-1)'</span>);
+axis ([-1 2 -.1 1.1])
+grid;
+</pre><img vspace="5" hspace="5" src="P022_08.png" alt=""> <div><ul><li>Ejercicio 1.3</li></ul></div><p>gr&aacute;fica 1</p><pre class="codeinput">clear;
+clc;
+g= @(t) exp(-t).*cos(2*pi*t).*(t&gt;=0);
+t=-2:.01:2;
+plot(t,g(2*t+1));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'g(2t+1)'</span>);
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="P022_09.png" alt=""> <p>gr&aacute;fica 2</p><pre class="codeinput">clear;
+clc;
+g= @(t) exp(-t).*cos(2*pi*t).*(t&gt;=0);
+t=-2:.01:2;
+plot(t,g(-t+1));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'g(-t+1)'</span>)';
+grid;
+</pre><img vspace="5" hspace="5" src="P022_10.png" alt=""> <p>gr&aacute;fica 3</p><pre class="codeinput">clear;
+clc;
+g= @(t) exp(-t).*cos(2*pi*t).*(t&gt;=0);
+t=-2:.01:2;
+plot(t,g(2*t+1) +g(-t+1));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'h(t)'</span>)';
+grid;
+</pre><img vspace="5" hspace="5" src="P022_11.png" alt=""> <p>Ejercicio 1.4</p><pre class="codeinput">clear <span class="string">all</span>;
+x= @(t) exp(-t).*((t&gt;=0)&amp;(t&lt;1))
+t1= 0:0.01:1;
+t= 0:0.001:100;
+E_x =sum(x(t).*x(t)*0.01)
+x_squared= @(t) exp(-2*t).*((t&gt;=0)&amp;(t&gt;1))
+E_x= quad(x_squared,0,1)
+g_squared=@(t) exp(-2*t).*(cos(2*pi*t).^2).*(t&gt;=0);
+E_g=sum(g_squared(t)*0.001)
+E_g=quad(g_squared,0,100)
+</pre><pre class="codeoutput">
+x =
+
+  function_handle with value:
+
+    @(t)exp(-t).*((t&gt;=0)&amp;(t&lt;1))
+
+
+E_x =
+
+    4.3276
+
+
+x_squared =
+
+  function_handle with value:
+
+    @(t)exp(-2*t).*((t&gt;=0)&amp;(t&gt;1))
+
+
+E_x =
+
+     0
+
+
+E_g =
+
+    0.2567
+
+
+E_g =
+
+    0.2562
+
+</pre><h2 id="18">5. Problema 1.2.2 utilizando MATLAB</h2><p>% punto51(X1, Y1, Y2, Y3, Y4, Y5, Y6)</p><h2 id="19">6. Funci&oacute;n para calcular la energ&iacute;a</h2><p>NOTA: funcion energia(limite inferior,limite superior,funcion)</p><p>Prueba con funcion simbolica</p><pre class="codeinput">syms <span class="string">a1</span> <span class="string">b1</span> <span class="string">t1</span>
+Q=energia(a1,b1,t1*exp(-t1))
+subs(Q,{a1,b1},{0,2})
+
+<span class="comment">% Funcion utilizada para calcular la energ&iacute;a:</span>
+<span class="comment">% function [E] = energia(a,b,y)</span>
+<span class="comment">% syms t1</span>
+<span class="comment">% E = int(y^2,t1,a,b); %%Integral para saber la energia</span>
+<span class="comment">% end</span>
+</pre><pre class="codeoutput"> 
+Q =
+ 
+(exp(-2*a1)*(2*a1^2 + 2*a1 + 1))/4 - (exp(-2*b1)*(2*b1^2 + 2*b1 + 1))/4
+ 
+ 
+ans =
+ 
+1/4 - (13*exp(-4))/4
+ 
+</pre><p>Ejercicio 1.1.3 Parte a</p><pre class="codeinput">x = 1*(heaviside(t1)-heaviside(t1-2))
+y = 1*(heaviside(t1)-heaviside(t1-1))-1*(heaviside(t1-1)-heaviside(t1-2))
+a=0 <span class="comment">%% a es el limite inferior</span>
+b=2 <span class="comment">%% b es el limite superior</span>
+Ey = energia(a,b,y)
+Ex = energia(a,b,x)
+Esuma = energia(a,b,x+y)
+Eresta = energia(a,b,x-y)
+</pre><pre class="codeoutput"> 
+x =
+ 
+heaviside(t1) - heaviside(t1 - 2)
+ 
+ 
+y =
+ 
+heaviside(t1 - 2) - 2*heaviside(t1 - 1) + heaviside(t1)
+ 
+
+a =
+
+     0
+
+
+b =
+
+     2
+
+ 
+Ey =
+ 
+2
+ 
+ 
+Ex =
+ 
+2
+ 
+ 
+Esuma =
+ 
+4
+ 
+ 
+Eresta =
+ 
+4
+ 
+</pre><p>Ejercicio 1.1.3 Parte b</p><pre class="codeinput">xb = sin(t1)*(heaviside(t1)-heaviside(t1-2*pi))
+yb = 1*(heaviside(t1)-heaviside(t1-2*pi))
+ab=0 <span class="comment">%% a es el limite inferior</span>
+bb=2*pi <span class="comment">%% b es el limite superior</span>
+Eyb = energia(ab,bb,yb)
+Exb = energia(ab,bb,xb)
+Esumab = energia(ab,bb,xb+yb)
+Erestab = energia(ab,bb,xb-yb)
+</pre><pre class="codeoutput"> 
+xb =
+ 
+sin(t1)*(heaviside(t1) - heaviside(t1 - 2*pi))
+ 
+ 
+yb =
+ 
+heaviside(t1) - heaviside(t1 - 2*pi)
+ 
+
+ab =
+
+     0
+
+
+bb =
+
+    6.2832
+
+ 
+Eyb =
+ 
+2*pi
+ 
+ 
+Exb =
+ 
+pi
+ 
+ 
+Esumab =
+ 
+3*pi
+ 
+ 
+Erestab =
+ 
+3*pi
+ 
+</pre><p>Ejercicio 1.1.3 Parte c</p><pre class="codeinput">xc = sin(t1)*(heaviside(t1)-heaviside(t1-pi))
+yc = 1*(heaviside(t1)-heaviside(t1-pi))
+ac=0 <span class="comment">%% a es el limite inferior</span>
+bc=pi <span class="comment">%% b es el limite superior</span>
+Eyc = energia(ac,bc,yc)
+Exc = energia(ac,bc,xc)
+Esumac = energia(ac,bc,xc+yc)
+Erestac = energia(ac,bc,xc-yc)
+</pre><pre class="codeoutput"> 
+xc =
+ 
+sin(t1)*(heaviside(t1) - heaviside(t1 - pi))
+ 
+ 
+yc =
+ 
+heaviside(t1) - heaviside(t1 - pi)
+ 
+
+ac =
+
+     0
+
+
+bc =
+
+    3.1416
+
+ 
+Eyc =
+ 
+pi
+ 
+ 
+Exc =
+ 
+pi/2
+ 
+ 
+Esumac =
+ 
+(3*pi)/2 + 4
+ 
+ 
+Erestac =
+ 
+(3*pi)/2 - 4
+ 
+</pre><h2 id="24">7. Funci&oacute;n para calcular la potencia</h2><p>NOTA: funcion energia(funcion,periodo)</p><p>Prueba con funcion simbolica</p><pre class="codeinput">syms <span class="string">t1</span>
+Q = potencia(t1.^2,2)
+
+<span class="comment">%A continuacion la funci&oacute;n utilizada para calcular la potencia:</span>
+<span class="comment">% function [P] = potencia(f,T)</span>
+<span class="comment">% syms t1</span>
+<span class="comment">% P = 1/T*int(f^2,t1,-T/2,T/2); %%Integral para saber la potencia</span>
+<span class="comment">% end</span>
+</pre><pre class="codeoutput"> 
+Q =
+ 
+1/5
+ 
+</pre><p>Ejercicio 1.1.4 inciso a</p><pre class="codeinput">fa = -(t1.^3)
+Pa = potencia(fa,4)
+</pre><pre class="codeoutput"> 
+fa =
+ 
+-t1^3
+ 
+ 
+Pa =
+ 
+64/7
+ 
+</pre><p>Ejercicio 1.1.4 inciso b</p><pre class="codeinput">fb = 2*(t1.^3)
+Pb = potencia(fb,4)
+</pre><pre class="codeoutput"> 
+fb =
+ 
+2*t1^3
+ 
+ 
+Pb =
+ 
+256/7
+ 
+</pre><p>Ejercicio 1.1.4 inciso c</p><pre class="codeinput">syms <span class="string">c</span>
+fc = c*(t1.^3)
+Pc = potencia (fc,4)
+</pre><pre class="codeoutput"> 
+fc =
+ 
+c*t1^3
+ 
+ 
+Pc =
+ 
+(64*c^2)/7
+ 
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Práctica 2: Señales en tiempo continuo
+%
+% Integrantes:
+%
+% * Arellano Sánchez José Alberto
+%
+% * López Piedracruz Marcos Antonio
+%
+% * Luviano Murakawa Tsuioshi Alberto
+%
+% * Robles Cernas Carlos de Jesus
+%%
+%
+%
+%% Objetivos
+%
+% Los objetivos de la práctica 2 son los siguientes:
+%
+% Objetivo General:
+%
+% * Manipulación básica de MATLAB
+%
+% Objetivos específicos:
+%
+% * Gráficas de señales reales y complejas continuas
+%
+% * Transformación de señales continuas (escalamientos y traslaciones)
+%
+% * Calculo de energía y potencia de señales continuas
+%
+%% Intorducción
+%
+% * Historia de Matlab
+%%
+% Matlab es un software matemático con IDE  (entorno de desarrollo integrado
+% por sus siglas en ingles), con lenguaje M y multiplataforma.
+%
+% Cleve Moler crea la primera versión de Matlab en 1984, usando paquetes de
+% subrutinas en Fortran en los cursos de Análisis Numérico y Algebra Lineal,
+% sin tener una necesidad de programas que usaran este lenguaje.
+%
+% En 1970 se proporcionó un acceso sencillo al software de matrices LINPACK 
+% y EISPACK al crearse el lenguaje de programación M.
+%
+% En 2004 Matlab ya contaba con más de un millón de usuarios, tanto 
+% académicos como empresarios.
+%
+% <https://www.ecured.cu/MATLAB7 Enlace1>
+%
+% * Octave
+%
+% Octave (GNU Octave), es parte de proyecto GNU y a su vez un programa libre
+% para hacer cálculos compatibles en un 99% con Matlab
+% El proyecto fue creado alrededor del año 1988 para ser utilizado en un 
+% curso de diseño de reactores químicos, sin embargo, en 1992 se decide 
+% extenderlo y, bajo la dirección de John W. Eaton, comienza a desarrollarse
+% siendo su versión Alpha lanzada el 4 de enero de 1993, para aparecer la 
+% versión 1.0 el 17 de febrero de 1994.
+%
+% Octave es muy comúnmente utilizado como alternativa a Matlab al ser de 
+% licencia pública general de GNU, siendo Matlab descartado por muchas 
+% empresas.
+%
+% Algunas de las ventajas de Octave son:
+%
+% * La sintaxis es similar a la utilizada en MATLAB.
+% * Es un lenguaje interpretado.
+% * No permite pasar argumentos por referencia. Siempre se pasan por valor.
+% * No permite punteros.
+% * Se pueden generar scripts.
+% * Soporta gran parte de las funciones de la librería estándar de C.
+% * Puede extenderse para ofrecer compatibilidad a las llamadas al sistema 
+% UNIX.
+% * El lenguaje está pensado para trabajar con matrices y provee mucha 
+% funcionalidad para trabajar con éstas.
+% * Soporta estructuras similares a los "structs " de C.
+%
+% <https://torroja.dmt.upm.es/media/files/paper_logrono.pdf Documento1>
+%
+% <http://ewh.ieee.org/sb/el_salvador/uca/octave.html Enlace2>
+%
+% * PYTHON
+%
+% En 1989, Guido Van Rossum, decidió empezar un proyecto como pasatiempo 
+% dándole continuidad a ABC, un lenguaje de programación desarrollado en el CWI.
+%
+% ABC fue Creado a principios de los 80’s siendo alternativa e BASIC pero, 
+% el hardware disponible en la época hacía difícil su uso. Así Van Rossum 
+% creo Python, siendo el nombre escogido debido al gusto de Van Rossum por 
+% el grupo Monty Python.
+%
+% En 1991 se publicó la versión 0.9.0, teniendo ya disponibles las clases 
+% por herencia, manejo de excepciones, funciones y tipos moduladores.
+%
+% <https://platzi.com/blog/historia-python/ Enlace3>
+%
+%%
+%% Desarrollo
+%
+%%      1. Creación de una función
+%
+% Realizar una funcion que reciba dos parametros $a$ y $\omega$ para que pueda
+% regresar la evaluación: $F(\omega)=a/(a^2+\omega^2)$
+%
+% Para poder hacer el realizamos dos codigos, uno al que lo utilizamos
+% unicamente para definir un escalon y el otro en el que se le pide al
+% usuario introduccir los valores de $a$ y $\omega$
+% _funcion escalon_
+%
+
+ sal= @(Escalon)(t>=0)
+
+clc
+clear all;
+close all;
+dt=1e-3;
+% t=-10:dt:10;
+
+% function [f_w] = fun1(a,w)
+% f_w = a./(a^2.+(w.^2));
+% end
+
+syms w
+a = 5;     %input('ingrese a diferente de 0='); El usuario introduce el valor de a
+fun1(a,w)
+
+% f_t=exp(-a.*t).*cos(w.*t).*Escalon(t);
+% g_t=exp(-a.*t).*sin(w.*t).*Escalon(t);
+% y_t=(1/abs(a)).*(1/2).*t.*exp(-a.*t).*sin(w.*t).*Escalon(t);
+% fg_t=conv(f_t,g_t,'same').*dt;
+
+%%      2. Funcion para graficar en $R$.
+%
+% Construya una función que gráfique funciones de $f:R\rightarrow R$ en el formato de su elección 
+%y pruebe su código mostrando la gráfica de $F(\omega)$ vs $\omega$ en el intervalo $[-2,2]$ para
+%$a=1$, no debe incluir el código, solo el uso de la función para mostrar
+%la gráfica.
+
+w=-2:0.001:2;
+a=1;
+f_w=fun1(a,w);
+figura(w,f_w)
+
+% %%      3. Funcion para graficar en $R$ a $R^2$
+% %
+% Construya una función que gráfique funciones de $f:R\rightarrow R^2$ en el formato 
+% de su elección y pruebe su código mostrando la gráfica de la transformada de Fourier 
+% $F(w)$ en $[-10,10]$ de la función $f(t)=e^{-2t}u(t)$, puede utilizar una función anonima 
+% para este fin, no debe incluir el código, solo el uso de la función para mostrarla gráfica. 
+% Reporte la gráfica de $f(t)$ de $[-1,5]$ (recuerde que ya tiene una función para esto). 
+% Reporte del espectro de magnitud y del espectro de fase en $[-10,10].
+% %
+clc
+clear all;
+close all;
+dt=1e-3;
+% t=-1.5:dt:5.5;
+syms w t
+% 
+f_t = exp(-2.*t).*heaviside(t)
+F_w = transformada(f_t,t,w)
+
+t=[-1:0.001:5];
+f_t = exp(-2.*t).*heaviside(t);
+w = [-10:0.001:10];
+F_w = 1./(2 + w.*1i);
+
+
+grafica3(t,f_t,'f(t)')
+
+
+grafica3(w,F_w,'F(w)')
+
+z=w./2;
+theta=-atan(z);
+
+
+grafica3(w,theta,'<w')
+
+%%      4. Ejemplos del libro de texto (Lathi).
+%
+% * Ejercicio 1.1 
+%
+% gráfica 1
+%
+clear;
+clc;
+t=(-2:2);
+f= @(t) exp(-t).*cos(2*pi*t)
+figure
+plot(t,f(t))
+xlabel('t'); ylabel('f(t)'); 
+grid;
+
+%%
+% gráfica 2
+%
+clear;
+clc;
+figure
+t=(-2:.01:2);
+f= @(t) exp(-t).*cos(2*pi*t)
+plot(t,f(t))
+xlabel('t'); 
+ylabel('f(t)'); 
+grid;
+
+%%
+% * Ejercicio 1.2
+%
+% gráfica 1
+%
+clear;
+clc;
+u= @(t) t>=0;
+t=-2:2;
+plot(t,u(t))
+xlabel('t'); ylabel('u(t)');
+grid on;
+
+%%
+% gráfica 2
+%
+
+clear;
+clc;
+u= @(t) t>=0;
+t=-2:2;
+plot(t,u(t))
+xlabel('t'); ylabel('u(t)');
+grid on;
+t=-2:.01:2;
+plot(t,u(t))
+xlabel('t'); ylabel('u(t)');
+grid on;
+axis ([-2 2 -.1 1.1]);
+
+%%
+% gráfica 3
+%
+clear;
+clc;
+p= @(t) (t>=0 & t<1);
+t=-1:.01:2;
+plot (t,p(t));
+xlabel('t'); ylabel('p(t)=u(t)-u(t-1)');
+axis ([-1 2 -.1 1.1])
+grid;
+
+%%
+% * Ejercicio 1.3
+%
+% gráfica 1
+%
+
+clear;
+clc;
+g= @(t) exp(-t).*cos(2*pi*t).*(t>=0);
+t=-2:.01:2;
+plot(t,g(2*t+1));
+xlabel('t'); ylabel('g(2t+1)');
+grid on;
+
+%%
+% gráfica 2
+%
+clear;
+clc;
+g= @(t) exp(-t).*cos(2*pi*t).*(t>=0);
+t=-2:.01:2;
+plot(t,g(-t+1)); 
+xlabel('t'); 
+ylabel('g(-t+1)')'; 
+grid;
+
+%%
+% gráfica 3
+%
+clear;
+clc;
+g= @(t) exp(-t).*cos(2*pi*t).*(t>=0);
+t=-2:.01:2;
+plot(t,g(2*t+1) +g(-t+1)); 
+xlabel('t'); 
+ylabel('h(t)')'; 
+grid;
+
+%%
+% Ejercicio 1.4
+%
+clear all;
+x= @(t) exp(-t).*((t>=0)&(t<1))
+t1= 0:0.01:1;
+t= 0:0.001:100;
+E_x =sum(x(t).*x(t)*0.01)
+x_squared= @(t) exp(-2*t).*((t>=0)&(t>1))
+E_x= quad(x_squared,0,1)
+g_squared=@(t) exp(-2*t).*(cos(2*pi*t).^2).*(t>=0);
+E_g=sum(g_squared(t)*0.001)
+E_g=quad(g_squared,0,100)
+
+%%      5. Problema 1.2.2 utilizando MATLAB
+%
+% %
+% punto51(X1, Y1, Y2, Y3, Y4, Y5, Y6)
+
+%%      6. Función para calcular la energía
+%  
+% NOTA: funcion energia(limite inferior,limite superior,funcion)
+%%
+% Prueba con funcion simbolica
+%
+syms a1 b1 t1
+Q=energia(a1,b1,t1*exp(-t1))
+subs(Q,{a1,b1},{0,2})
+
+% Funcion utilizada para calcular la energía:
+% function [E] = energia(a,b,y)
+% syms t1
+% E = int(y^2,t1,a,b); %%Integral para saber la energia
+% end
+
+%% 
+% Ejercicio 1.1.3 Parte a
+%
+x = 1*(heaviside(t1)-heaviside(t1-2))
+y = 1*(heaviside(t1)-heaviside(t1-1))-1*(heaviside(t1-1)-heaviside(t1-2))
+a=0 %% a es el limite inferior
+b=2 %% b es el limite superior
+Ey = energia(a,b,y)
+Ex = energia(a,b,x)
+Esuma = energia(a,b,x+y)
+Eresta = energia(a,b,x-y)
+%% 
+% Ejercicio 1.1.3 Parte b
+%
+xb = sin(t1)*(heaviside(t1)-heaviside(t1-2*pi))
+yb = 1*(heaviside(t1)-heaviside(t1-2*pi))
+ab=0 %% a es el limite inferior
+bb=2*pi %% b es el limite superior
+Eyb = energia(ab,bb,yb)
+Exb = energia(ab,bb,xb)
+Esumab = energia(ab,bb,xb+yb)
+Erestab = energia(ab,bb,xb-yb)
+%% 
+% Ejercicio 1.1.3 Parte c
+xc = sin(t1)*(heaviside(t1)-heaviside(t1-pi))
+yc = 1*(heaviside(t1)-heaviside(t1-pi))
+ac=0 %% a es el limite inferior
+bc=pi %% b es el limite superior
+Eyc = energia(ac,bc,yc)
+Exc = energia(ac,bc,xc)
+Esumac = energia(ac,bc,xc+yc)
+Erestac = energia(ac,bc,xc-yc)
+
+
+
+%%      7. Función para calcular la potencia
+%
+% NOTA: funcion energia(funcion,periodo)
+%% 
+% Prueba con funcion simbolica
+syms t1
+Q = potencia(t1.^2,2)
+
+%A continuacion la función utilizada para calcular la potencia:
+% function [P] = potencia(f,T)
+% syms t1
+% P = 1/T*int(f^2,t1,-T/2,T/2); %%Integral para saber la potencia
+% end
+%% 
+% Ejercicio 1.1.4 inciso a
+fa = -(t1.^3)
+Pa = potencia(fa,4)
+%% 
+% Ejercicio 1.1.4 inciso b
+fb = 2*(t1.^3)
+Pb = potencia(fb,4)
+%%
+% Ejercicio 1.1.4 inciso c
+syms c
+fc = c*(t1.^3)
+Pc = potencia (fc,4)
+ 
+##### SOURCE END #####
+--></body></html>
