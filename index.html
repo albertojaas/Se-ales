@@ -105,7 +105,7 @@ ans =
 w=-2:0.001:2;
 a=1;
 f_w=fun1(a,w);
-figura(w,f_w)
+figura(w,f_w,<span class="string">'f(w)'</span>)
 </pre><img vspace="5" hspace="5" src="P022_01.png" alt=""> <h2 id="9">3. Funcion para graficar en <img src="P022_eq03442895190380135198.png" alt="$R$"> a <img src="P022_eq02243227017317752302.png" alt="$R^2$"></h2><p>% Construya una funci&oacute;n que gr&aacute;fique funciones de <img src="P022_eq07287922491706758619.png" alt="$f:R\rightarrow R^2$"> en el formato de su elecci&oacute;n y pruebe su c&oacute;digo mostrando la gr&aacute;fica de la transformada de Fourier <img src="P022_eq14837990414550488255.png" alt="$F(w)$"> en <img src="P022_eq01315095555081819470.png" alt="$[-10,10]$"> de la funci&oacute;n <img src="P022_eq16179711886080607310.png" alt="$f(t)=e^{-2t}u(t)$">, puede utilizar una funci&oacute;n anonima para este fin, no debe incluir el c&oacute;digo, solo el uso de la funci&oacute;n para mostrarla gr&aacute;fica. Reporte la gr&aacute;fica de <img src="P022_eq09478123530129115431.png" alt="$f(t)$"> de <img src="P022_eq05003862285080136837.png" alt="$[-1,5]$"> (recuerde que ya tiene una funci&oacute;n para esto). Reporte del espectro de magnitud y del espectro de fase en $[-10,10]. %</p><pre class="codeinput">clc
 clear <span class="string">all</span>;
 close <span class="string">all</span>;
@@ -122,7 +122,7 @@ w = [-10:0.001:10];
 F_w = 1./(2 + w.*1i);
 
 
-grafica3(t,f_t,<span class="string">'f(t)'</span>)
+figura(t,f_t,<span class="string">'f(t)'</span>)
 
 
 grafica3(w,F_w,<span class="string">'F(w)'</span>)
@@ -131,7 +131,7 @@ z=w./2;
 theta=-atan(z);
 
 
-grafica3(w,theta,<span class="string">'&lt;w'</span>)
+figura(w,theta,<span class="string">'&lt;w'</span>)
 </pre><pre class="codeoutput"> 
 f_t =
  
@@ -142,7 +142,6 @@ F_w =
  
 1/(2 + w*1i)
  
-Warning: Imaginary parts of complex X and/or Y arguments ignored 
 </pre><img vspace="5" hspace="5" src="P022_02.png" alt=""> <img vspace="5" hspace="5" src="P022_03.png" alt=""> <img vspace="5" hspace="5" src="P022_04.png" alt=""> <h2 id="10">4. Ejemplos del libro de texto (Lathi).</h2><div><ul><li>Ejercicio 1.1</li></ul></div><p>gr&aacute;fica 1</p><pre class="codeinput">clear;
 clc;
 t=(-2:2);
@@ -624,7 +623,7 @@ fun1(a,w)
 w=-2:0.001:2;
 a=1;
 f_w=fun1(a,w);
-figura(w,f_w)
+figura(w,f_w,'f(w)')
 
 %%      3. Funcion para graficar en $R$ a $R^2$
 % %
@@ -651,7 +650,7 @@ w = [-10:0.001:10];
 F_w = 1./(2 + w.*1i);
 
 
-grafica3(t,f_t,'f(t)')
+figura(t,f_t,'f(t)')
 
 
 grafica3(w,F_w,'F(w)')
@@ -660,7 +659,7 @@ z=w./2;
 theta=-atan(z);
 
 
-grafica3(w,theta,'<w')
+figura(w,theta,'<w')
 
 %%      4. Ejemplos del libro de texto (Lathi).
 %
