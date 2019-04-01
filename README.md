@@ -1,69 +1,69 @@
 ## Práctica 2
-%% Práctica 2: Señales continuas
-%
-% 
-%%
-%% Descripción general de MATLAB
-% <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec01.pdf Documento>
-%% Crear documento con publish
-% Ayuda en linea para publicar <https://www.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html Publish>
-%% Creación de vectores
-% <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec01.pdf Documento>
-% Creamos  vectores (fila)
+## Práctica 2: Señales continuas
+#
+# 
+##
+## Descripción general de MATLAB
+# <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec01.pdf Documento>
+## Crear documento con publish
+# Ayuda en linea para publicar <https://www.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html Publish>
+## Creación de vectores
+# <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec01.pdf Documento>
+# Creamos  vectores (fila)
 t1= -10:5; % El punto y coma es para que el resultado no sea desplegado
 t2=-2:0.01:15; 
-%%
-% Para saber las dimensiones 
+##
+# Para saber las dimensiones 
 size(t1)
 size(t2)
-%% Operación elemento a elemento y matricial
-% Las operaciones elemento a elemento nos ayudan a evaluar funciones para
-% valores de su dominio al mismo tiempo, el sigueinte código genera error  
-%%
-% 
-%   t1*t1
-%       
-% En cambio el sigueinte codigo es correcto
+## Operación elemento a elemento y matricial
+# Las operaciones elemento a elemento nos ayudan a evaluar funciones para
+# valores de su dominio al mismo tiempo, el sigueinte código genera error  
+##
+# 
+#   t1*t1
+#       
+# En cambio el sigueinte codigo es correcto
 t1.*t1
 
-%% Crear funciones
-% <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec02.pdf Documento>
-% 
-% Las funciones en MATLAB tienen la siguiente sintaxis
-%
-%   function [sal1,sal2,sal3]=nombreFuncion(ent1,ent2,ent3)
-%       %codigo de la funcion 
-%   end
-% 
-% Algunas notas sobre las funciones
-% 
-% * El archivo debe guardarse como  nombreFuncion.m
-% * Debes de estar trabajando en el directorio donde este tu función para
-% poder ocuparla, o agregar el directorio
-% * Las salidas y las entradas son opcionales, en este sentido, hay 4 tipos 
-% funciones: con entradas y salidas, con salidas sin entrada, con entrada
-% sin salidas, sin entradas y sin salidas
-%
-% ¿Podrías escribir varias funciones en el mismo archivo y ocupar unas
-% funciones dentro de otras?
+## Crear funciones
+# <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec02.pdf Documento>
+# 
+# Las funciones en MATLAB tienen la siguiente sintaxis
+#
+#   function [sal1,sal2,sal3]=nombreFuncion(ent1,ent2,ent3)
+#       %codigo de la funcion 
+#   end
+# 
+# Algunas notas sobre las funciones
+# 
+# * El archivo debe guardarse como  nombreFuncion.m
+# * Debes de estar trabajando en el directorio donde este tu función para
+# poder ocuparla, o agregar el directorio
+# * Las salidas y las entradas son opcionales, en este sentido, hay 4 tipos 
+# funciones: con entradas y salidas, con salidas sin entrada, con entrada
+# sin salidas, sin entradas y sin salidas
+#
+# ¿Podrías escribir varias funciones en el mismo archivo y ocupar unas
+# funciones dentro de otras?
 
-%% Algunas funciones implementadas
-%
-%   help sin 
-%   help cos
-%   help exp
-%   help abs
-%   help angle
-%   help pi
-%   help plot
-%   help square
-%   help sinc
-%   help rectpuls
-%   help tripuls
-%   help sawtooth
-%   help heaviside
-%   help dirac
-%
+## Algunas funciones implementadas
+#
+#   help sin 
+#   help cos
+#   help exp
+#   help abs
+#   help angle
+#   help pi
+#   help plot
+#   help square
+#   help sinc
+#   help rectpuls
+#   help tripuls
+#   help sawtooth
+#   help heaviside
+#   help dirac
+#
 % Entonces si ejecutamos alguna de las intrucciones anteriores se
 % desplegara una breve descripción de la instrucción solicitada, si se
 % quiere una descripción más completa tendría que ejecutarse _doc sinc_  
